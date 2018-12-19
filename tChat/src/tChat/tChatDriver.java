@@ -49,6 +49,11 @@ public class tChatDriver {
 				port = area1.getText();
 				tChat chat = new tChat(iP, port); 
 				chat.start();
+				try {
+				drawGUI2();
+				} catch(IOException x) {
+					x.printStackTrace();
+				}
 			}
        }); 
        connect.setBounds(((frameSize / 2) - 50),
@@ -60,6 +65,11 @@ public class tChatDriver {
        frame.setVisible(true);
    }
 
+	private static void drawGUI2() throws IOException {
+	    JFrame frame = new JFrame("tChat");
+	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame.setLayout(null);
+	}
 public static void main(String[] args) throws IOException {
    	createAndShowGUI(); 
    }
