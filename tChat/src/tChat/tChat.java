@@ -1,5 +1,7 @@
-package tChat;
 
+/*code obtained from geeks for geeks*/
+
+package tChat;
 import java.net.*;
 import java.io.*;
 import java.util.*;
