@@ -8,17 +8,14 @@ public class tChat {
 	private static final String TERMINATE = "Exit";
 	static String name;
 	static volatile boolean finished = false;
+	private String IP, portNo;
+	
+	public tChat(String IP, String portNo){
+		this.IP = IP;
+		this.portNo = portNo;
+	}
 
-	public static void main(String[] args) {
-		Scanner c = new Scanner(System.in);
-		String IP, portNo;
-		
-		System.out.println("Please enter chat IP:");
-		IP = c.next();
-		
-		System.out.println("Please enter port number:");
-		portNo = c.next();
-		
+		void start() {
 			try {
 				InetAddress group = InetAddress.getByName(IP);
 				int port = Integer.parseInt(portNo);
@@ -57,11 +54,9 @@ public class tChat {
 				}
 			}	catch(UnknownHostException h) {
 				System.out.println("ERROR FINDING HOST. TERMINATING...");
-				c.close();
 				System.exit(0);
 			} 	catch (Exception se) {
 				System.out.println("UNKNOWN ERROR");
-				c.close(); 
 				System.exit(0);
 		}
 	}
