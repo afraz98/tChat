@@ -1,6 +1,4 @@
-
 /*code obtained from geeks for geeks*/
-
 package tChat;
 import java.net.*;
 import java.io.*;
@@ -12,13 +10,18 @@ public class tChat {
 	static volatile boolean finished = false;
 
 	public static void main(String[] args) {
-		if (args.length != 2)
-			System.out.println(
-					"Two arguments required: <multicast-host> <port-number>");
-		else {
+		Scanner c = new Scanner(System.in);
+		String IP, portNo;
+		
+		System.out.println("Please enter chat IP:");
+		IP = c.next();
+		
+		System.out.println("Please enter port number:");
+		portNo = c.next();
+		
 			try {
-				InetAddress group = InetAddress.getByName(args[0]);
-				int port = Integer.parseInt(args[1]);
+				InetAddress group = InetAddress.getByName(IP);
+				int port = Integer.parseInt(portNo);
 				Scanner sc = new Scanner(System.in);
 				System.out.print("Enter your name: ");
 				name = sc.nextLine();
@@ -43,6 +46,7 @@ public class tChat {
 						finished = true;
 						socket.leaveGroup(group);
 						socket.close();
+						sc.close(); 
 						break;
 					}
 					message = name + ": " + message;
@@ -51,13 +55,16 @@ public class tChat {
 							buffer.length, group, port);
 					socket.send(datagram);
 				}
-			} catch (SocketException se) {
-				System.out.println("Error creating socket");
-				se.printStackTrace();
-			} catch (IOException ie) {
-				System.out.println("Error reading/writing from/to socket");
-				ie.printStackTrace();
-			}
+			}	catch(UnknownHostException h) {
+				System.out.println("ERROR FINDING HOST. TERMINATING...");
+				c.close();
+				System.exit(0);
+			} 	catch (Exception se) {
+				System.out.println("UNKNOWN ERROR");
+				c.close(); 
+				System.exit(0);
 		}
 	}
 }
+			
+			
