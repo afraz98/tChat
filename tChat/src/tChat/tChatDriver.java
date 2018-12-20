@@ -81,6 +81,9 @@ public class tChatDriver {
 	    JFrame frame = new JFrame("tChat");
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setLayout(null);
+	    
+	    frame.setSize(frameSize,frameSize);
+	    frame.setVisible(true);
 	}
 public static void main(String[] args) throws IOException {
    	createAndShowGUI(); 
