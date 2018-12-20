@@ -6,13 +6,15 @@ import java.util.*;
 
 public class tChat {
 	private static final String TERMINATE = "Exit";
-	static String name;
 	static volatile boolean finished = false;
-	private String IP, portNo;
 	
-	public tChat(String IP, String portNo){
+	private String IP, portNo;
+	static String name;
+	
+	public tChat(String IP, String portNo, String name){
 		this.IP = IP;
 		this.portNo = portNo;
+		this.name = name; 
 	}
 
 		void start() {
@@ -20,21 +22,13 @@ public class tChat {
 				InetAddress group = InetAddress.getByName(IP);
 				int port = Integer.parseInt(portNo);
 				Scanner sc = new Scanner(System.in);
-				System.out.print("Enter your name: ");
-				name = sc.nextLine();
 				MulticastSocket socket = new MulticastSocket(port);
 
-				// Since we are deploying
-				socket.setTimeToLive(0);
-				// this on localhost only (For a subnet set it as 1)
-
+				// Since we are deploying				socket.setTimeToLive(0);
 				socket.joinGroup(group);
 				Thread t = new Thread(new ReadThread(socket, group, port));
 
-				// Spawn a thread for reading messages
 				t.start();
-
-				// sent to the current group
 				System.out.println("Start typing messages...\n");
 				while (true) {
 					String message;

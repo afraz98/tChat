@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class tChatDriver {
-	static String iP, port;
+	static String iP, port, name;
 	private static int frameSize = 500;
 	private static void createAndShowGUI() throws IOException {
        JFrame frame = new JFrame("tChat");
@@ -23,6 +23,7 @@ public class tChatDriver {
 
        JLabel IP = new JLabel();
        JLabel Port = new JLabel();
+       JLabel Name = new JLabel(); 
        
        Port.setBounds((frameSize/2)-115, (frameSize / 3) - 10, 40, 40);
        IP.setText("IP: ");
@@ -30,25 +31,35 @@ public class tChatDriver {
        IP.setBounds((frameSize/2)-115, (frameSize / 4) - 10, 40, 40);
        Port.setText("Port: ");
        
+       Name.setBounds((frameSize/2)-115, (int)(frameSize / 2.5) - 5, 40, 40);
+       Name.setText("Name: ");
+       
        frame.add(IP);
        frame.add(Port);
+       frame.add(Name);
        
 		JTextArea area1 = new JTextArea();
 		area1.setBounds((frameSize / 2) - 75, (frameSize / 3), 150, 20);
 		
 		JTextArea area2 = new JTextArea();
 		area2.setBounds((frameSize / 2) - 75, ((int)(frameSize / 4)), 150, 20);
+		
+		JTextArea area3 = new JTextArea();
+		area3.setBounds((frameSize / 2) - 75, ((int)(frameSize / 2.5)+5), 150, 20);
 	
 	   frame.add(area1);
 	   frame.add(area2);
+	   frame.add(area3);
 	   
        JButton connect = new JButton(new AbstractAction("") {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				iP = area2.getText();
 				port = area1.getText();
+				name = area3.getText(); 
+				
 				frame.setVisible(false);
-				tChat chat = new tChat(iP, port); 
+				tChat chat = new tChat(iP, port, name); 
 				chat.start();
 				try {
 				drawGUI2();
