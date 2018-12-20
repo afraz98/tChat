@@ -59,13 +59,13 @@ public class tChatDriver {
 				name = area3.getText(); 
 				
 				frame.setVisible(false);
-				tChat chat = new tChat(iP, port, name); 
-				chat.start();
 				try {
 				drawGUI2();
 				} catch(IOException x) {
 					x.printStackTrace();
 				}
+				tChat chat = new tChat(iP, port, name); 
+				chat.start();
 			}
        }); 
        connect.setBounds(((frameSize / 2) - 50),
@@ -78,12 +78,12 @@ public class tChatDriver {
    }
 
 	private static void drawGUI2() throws IOException {
-	    JFrame frame = new JFrame("tChat");
-	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame.setLayout(null);
+	    JFrame frame2 = new JFrame("tChat");
+	    frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    frame2.setLayout(null);
 	    
-	    frame.setSize(frameSize,frameSize);
-	    frame.setVisible(true);
+	    frame2.setSize(frameSize,frameSize);
+	    frame2.setVisible(true);
 	}
 public static void main(String[] args) throws IOException {
    	createAndShowGUI(); 

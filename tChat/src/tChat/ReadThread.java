@@ -28,7 +28,7 @@ class ReadThread implements Runnable {
 				if (!message.startsWith(tChat.name))
 					System.out.println(message);
 			} catch (IOException e) {
-				System.out.println("Socket closed!");
+				System.exit(0);
 			}
 		}
 	}

@@ -24,7 +24,6 @@ public class tChat {
 				Scanner sc = new Scanner(System.in);
 				MulticastSocket socket = new MulticastSocket(port);
 
-				// Since we are deploying				socket.setTimeToLive(0);
 				socket.joinGroup(group);
 				Thread t = new Thread(new ReadThread(socket, group, port));
 
