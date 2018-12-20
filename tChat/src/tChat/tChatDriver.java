@@ -47,6 +47,7 @@ public class tChatDriver {
 			public void actionPerformed(ActionEvent e) {
 				iP = area2.getText();
 				port = area1.getText();
+				frame.setVisible(false);
 				tChat chat = new tChat(iP, port); 
 				chat.start();
 				try {
