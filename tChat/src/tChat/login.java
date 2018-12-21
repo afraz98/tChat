@@ -19,7 +19,7 @@ import javax.swing.JLabel;
 public class login extends JFrame {
 	static String iP, port, name;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textfield_3;
 	private JTextField textField_1;
 	private JTextField textField_2;
 
@@ -31,11 +31,8 @@ public class login extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		textField = new JTextField();
-		textField.setBounds(72, 193, 209, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		setResizable(false);
+
 		
 		JLabel lblIp = new JLabel("IP:");
 		lblIp.setBounds(22, 91, 46, 14);
@@ -59,12 +56,21 @@ public class login extends JFrame {
 		contentPane.add(textField_2);
 		textField_2.setColumns(10);
 		
+		textfield_3 = new JTextField();
+		textfield_3.setBounds(72, 193, 209, 20);
+		contentPane.add(textfield_3);
+		textfield_3.setColumns(10);
+		
+		textField_1.setText("10.0.0.8");
+		textField_2.setText("8192");
+		textfield_3.setText("Name");
+		
 		JButton btnNewButton = new JButton("Connect");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				iP = textField_1.getText();
 				port = textField_2.getText();
-				name = textField.getText();
+				name = textfield_3.getText();
 				setVisible(false);
 				logOn(iP, port, name);
 			}
