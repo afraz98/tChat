@@ -3,13 +3,13 @@ package tChat;
 import java.net.InetAddress;
 
 public class ServerClient {
-	public String name; 
+	public String name;
 	public InetAddress address;
 	public int port;
-	
+
 	public final int ID;
-	public int attempt = 0; 
-	
+	public int attempt = 0;
+
 	public ServerClient(String name, InetAddress address, int port,
 			final int ID) {
 		this.name = name;
@@ -17,8 +17,9 @@ public class ServerClient {
 		this.address = address;
 		this.port = port;
 	}
-	
+
 	public String toString() {
-		return "name" + " " + address.toString() + ":" + port; 
+		return "name" + " " + address.toString() + ":" + port + " " + "<" + ID
+				+ ">";
 	}
 }

@@ -1,17 +1,18 @@
 package tChat;
 
 public class ServerDriver {
-	private int port; 
+	private int port;
+
 	public ServerDriver(int port) {
 		this.port = port;
 		new Server(port);
 	}
+
 	/*
-	 * To run in Eclipse:
-	 * Debug -> Debug Configurations -> Arguments -> [Port]
-	 * */
+	 * To run in Eclipse: Debug -> Debug Configurations -> Arguments -> [Port]
+	 */
 	public static void main(String[] args) {
-		if(args.length != 1) {
+		if (args.length != 1) {
 			System.out.println("ERROR.");
 			System.exit(0);
 		}
