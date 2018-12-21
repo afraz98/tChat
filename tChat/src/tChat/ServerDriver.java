@@ -15,6 +15,7 @@ public class ServerDriver {
 			System.out.println("ERROR.");
 			System.exit(0);
 		}
+		System.out.println("Server started on port " + args[0]);
 		new ServerDriver(Integer.parseInt(args[0]));
 	}
 }

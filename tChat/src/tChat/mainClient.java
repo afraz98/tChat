@@ -47,7 +47,9 @@ public class mainClient extends JFrame {
 		this.name = name;
 		time = time.now();
 		
-		connect = openConnection(IP, port);
+		connect = openConnection(IP);
+		String conn = name + " attempting connection.";
+		send(conn.getBytes());
 		createWindow();
 	}
 	
@@ -73,9 +75,11 @@ public class mainClient extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
 					time = time.now();
-					textArea.append("[" + time +"]" 
-				+ name + ": " + textField.getText()+"\n");
-					textField.setText(""); 
+					String msg = ("[" + time +"]" 
+							+ name + ": " + textField.getText()+"\n");
+					textArea.append(msg);
+					textField.setText("");
+					send(msg.getBytes());
 				}
 			}
 		});
@@ -86,9 +90,9 @@ public class mainClient extends JFrame {
 		setResizable(false);
 	}
 
-	private boolean openConnection(String addr, int portF) {
+	private boolean openConnection(String addr) {
 		try {
-			socket = new DatagramSocket(portF);
+			socket = new DatagramSocket();
 			address = InetAddress.getByName(addr);
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
