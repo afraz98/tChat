@@ -44,6 +44,7 @@ public class mainClient extends JFrame {
 		String conn = "/c/" + name;
 		send(conn.getBytes());
 		createWindow();
+		listen(); 
 	}
 
 	private void createWindow() {
@@ -123,6 +124,8 @@ public class mainClient extends JFrame {
 			e.printStackTrace();
 		}
 		String message = new String(packet.getData());
+		message = message.substring(3, message.length());
+		message += "\n";
 		return message;
 	}
 	
