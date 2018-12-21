@@ -75,7 +75,8 @@ public class tChatDriver {
 
 	private static void login(String ip, String port,
 			String name) {
-		mainClient m = new mainClient();
+		int p = Integer.parseInt(port);
+		mainClient m = new mainClient(ip, p, name);
 	}
 public static void main(String[] args) throws IOException {
    	createAndShowGUI(); 

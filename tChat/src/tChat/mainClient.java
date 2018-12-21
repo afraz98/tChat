@@ -12,13 +12,29 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollBar;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JScrollPane;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.util.Calendar;
+import java.util.Date; 
 
 public class mainClient extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextArea textArea;
-	public mainClient() {
+	private String IP, name;
+	private int port;
+	private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");  
+	private LocalTime time;
+	
+
+	public mainClient(String IP, int port, String name) {
+		this.IP = IP;
+		this.port = port;
+		this.name = name;
+		time = time.now();  
 		createWindow();
 	}
 	
@@ -35,22 +51,24 @@ public class mainClient extends JFrame {
 		contentPane.add(textField, BorderLayout.SOUTH);
 		textField.setColumns(10);
 		
-		JScrollBar scrollBar = new JScrollBar();
-		contentPane.add(scrollBar, BorderLayout.EAST);
-		
 		textArea = new JTextArea();
 		textArea.setEditable(false);
 		contentPane.add(textArea, BorderLayout.CENTER);
 		
+		
 		textField.addKeyListener(new KeyAdapter() {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-					textArea.append(textField.getText()+"\n");
+					time = time.now();
+					textArea.append("[" + time +"]" 
+				+ name + ": " + textField.getText()+"\n");
 					textField.setText(""); 
 				}
 			}
 		});
 		
+		JScrollPane s = new JScrollPane(textArea);
+		contentPane.add(s);
 		setVisible(true);
 		setResizable(false);
 	}
