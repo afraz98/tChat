@@ -4,6 +4,7 @@ public class ServerDriver {
 	private int port; 
 	public ServerDriver(int port) {
 		this.port = port;
+		new Server(port);
 	}
 	/*
 	 * To run in Eclipse:
