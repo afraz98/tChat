@@ -32,6 +32,7 @@ public class mainClient extends JFrame {
 	private DatagramSocket socket;
 	private InetAddress address;
 	private Thread send;
+	private Thread listen; 
 
 	public mainClient(String IP, int port, String name) {
 		this.IP = IP;
@@ -68,7 +69,6 @@ public class mainClient extends JFrame {
 					time = time.now();
 					String msg = ("[" + time + "]" + name + ": "
 							+ textField.getText() + "\n");
-					textArea.append(msg);
 					textField.setText("");
 
 					msg = "/m/" + msg;
@@ -118,7 +118,6 @@ public class mainClient extends JFrame {
 		DatagramPacket packet = new DatagramPacket(data, 1024);
 		try {
 			socket.receive(packet);
-			printMessage(new String(packet.getData()));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -127,7 +126,14 @@ public class mainClient extends JFrame {
 		return message;
 	}
 	
-	private void printMessage(String s) {
-		textArea.append(s + "\n");
+	public void listen() {
+		listen = new Thread("Listen") {
+			public void run() {
+			while(true) {
+				String message = receive(); 
+					textArea.append(message);
+			}
+		}};
+		listen.start();
 	}
 }

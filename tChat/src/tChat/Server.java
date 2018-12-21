@@ -72,6 +72,7 @@ public class Server implements Runnable {
 		if (s.startsWith("/c/")) { /* Connection packet */
 			clients.add(new ServerClient(s.substring(3, s.length()),
 					p.getAddress(), p.getPort(), id));
+			id = new SecureRandom().nextInt(128);
 			System.out.println(clients.get(0).toString());
 		} else if (s.startsWith("/m/")) { /* Message packet */
 			sendToAll(s);
