@@ -18,6 +18,7 @@ public class tChatDriver {
 	private static int frameSize = 500;
 	private static void createAndShowGUI() throws IOException {
        JFrame frame = new JFrame("tChat");
+       frame.setResizable(false);
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        frame.setLayout(null);
 
@@ -56,18 +57,13 @@ public class tChatDriver {
 			public void actionPerformed(ActionEvent e) {
 				iP = area2.getText();
 				port = area1.getText();
-				name = area3.getText(); 
-				
+				name = area3.getText();
 				frame.setVisible(false);
-				try {
-				drawGUI2();
-				} catch(IOException x) {
-					x.printStackTrace();
-				}
-				tChat chat = new tChat(iP, port, name); 
-				chat.start();
+				login(iP, port, name);
 			}
        }); 
+       
+
        connect.setBounds(((frameSize / 2) - 50),
     		   ((int) (frameSize * (3.0/5.0))),100,50);
        connect.setText("Connect");
@@ -77,13 +73,9 @@ public class tChatDriver {
        frame.setVisible(true);
    }
 
-	private static void drawGUI2() throws IOException {
-	    JFrame frame2 = new JFrame("tChat");
-	    frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    frame2.setLayout(null);
-	    
-	    frame2.setSize(frameSize,frameSize);
-	    frame2.setVisible(true);
+	private static void login(String ip, String port,
+			String name) {
+		mainClient m = new mainClient();
 	}
 public static void main(String[] args) throws IOException {
    	createAndShowGUI(); 
