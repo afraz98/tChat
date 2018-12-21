@@ -52,6 +52,10 @@ public class tChatDriver {
 	   frame.add(area2);
 	   frame.add(area3);
 	   
+	   area2.setText("239.0.0.0");
+	   area1.setText("1234");
+	   area3.setText("Tony");
+	   
        JButton connect = new JButton(new AbstractAction("") {
 			@Override
 			public void actionPerformed(ActionEvent e) {
