@@ -2,13 +2,16 @@ package tChat;
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.SocketException;
+import java.util.ArrayList;
 
 public class Server implements Runnable{
 	private int port;
 	private DatagramSocket socket;
 	private Thread run, manage, send, receive;
 	private boolean running = false;
+	private ArrayList<ServerClient> clients = new ArrayList<ServerClient>(); 
 	
 	public Server(int port) {
 		this.port = port; 
@@ -53,11 +56,22 @@ public class Server implements Runnable{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					String str = new String(packet.getData());
-					System.out.println(str);
+					process(packet);
 				}
 			}
 		};
 		receive.start();
+	}
+	
+	private void process(DatagramPacket p) {
+		String s = new String(p.getData()); 
+		
+		if(s.startsWith("/c/")){ /*Connection packet*/
+			clients.add(new ServerClient(s.substring(3,s.length()), 
+					p.getAddress(), p.getPort(), 5555)); 
+			System.out.println(clients.get(0).toString());
+		} else { /*Message packet*/
+			System.out.println(s);
+		}
 	}
 }

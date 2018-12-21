@@ -48,7 +48,7 @@ public class mainClient extends JFrame {
 		time = time.now();
 		
 		connect = openConnection(IP);
-		String conn = name + " attempting connection.";
+		String conn = "/c/" + name;
 		send(conn.getBytes());
 		createWindow();
 	}
